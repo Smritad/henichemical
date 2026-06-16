@@ -1,0 +1,384 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+    
+  
+
+  # 1) Redirect www.* to non-www and force HTTPS in one step
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+  # 2) Redirect HTTP to HTTPS (for non-www host)
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+RewriteCond %{REQUEST_URI} ^/cosmeceutical-chemicals(/.*)?$ [NC]
+RewriteRule ^cosmeceutical-chemicals(.*)$ /cosmeceuticals$1 [R=301,L]
+# Redirect cosmetics-chemicals → cosmetics
+RewriteCond %{REQUEST_URI} ^/cosmetics-chemicals(/.*)?$ [NC]
+RewriteRule ^cosmetics-chemicals(.*)$ /cosmetics$1 [R=301,L]
+
+# Redirect pharmaceutical-chemicals → cosmetics
+RewriteCond %{REQUEST_URI} ^/pharmaceutical-chemicals(/.*)?$ [NC]
+RewriteRule ^pharmaceutical-chemicals(.*)$ /pharmaceuticals$1 [R=301,L]
+
+    Redirect 301 /product-details/1-2---diphenoxyethane-dpe https://henichemicals.com/specialty-and-fine-chemicals/1-2-diphenoxyethane-dpe
+    Redirect 301 /product-details/1-3---diphenylurea-dpu-1 https://henichemicals.com/specialty-and-fine-chemicals/1-3-diphenylurea-dpu
+    Redirect 301 /product-details/2-ethylhexyl-oleate-1 https://henichemicals.com/cosmetic-chemicals/2-ethylhexyl-oleate
+    Redirect 301 /product-details/2-ethylhexyl-oleate-1-1-1 https://henichemicals.com/industrial-lubricants/2-ethylhexyl-oleate
+    Redirect 301 /product-details/2-ethylhexyl-palmitate-1-1-1 https://henichemicals.com/industrial-lubricants/2-ethylhexyl-palmitate
+    Redirect 301 /product-details/2-ethylhexyl-palmitate-1-2 https://henichemicals.com/cosmetic-chemicals/2-ethylhexyl-palmitate
+    Redirect 301 /product-details/2-ethylhexyl-stearate-1 https://henichemicals.com/cosmetic-chemicals/2-ethylhexyl-stearate
+    Redirect 301 /product-details/2-ethylhexyl-stearate-1-1-1 https://henichemicals.com/industrial-lubricants/2-ethylhexyl-stearate
+    Redirect 301 /product-details/3-3-5-5-tetrabromophenol-phthalein-1-1 https://henichemicals.com/industrial-chemicals/3-3-5-5-tetrabromophenolphthalein
+    Redirect 301 /industrial-chemicals/3-3-5-5-tetrabromophenol-phthalein https://henichemicals.com/industrial-chemicals/3-3-5-5-tetrabromophenolphthalein
+    Redirect 301 /food--nutraceuticals/palmitoylethanolamide-pea https://henichemicals.com/food-nutraceuticals-chemicals/palmitoylethanolamide-pea
+    Redirect 301 /cosmetics-chemicals/isotridecyl-stearate-itd https://henichemicals.com/cosmetics/isotridecyl-stearate-itds
+    Redirect 301 /cosmetics/medium-chain-triglycerides-mct-oil-gtcc-cctg https://henichemicals.com/cosmetics/medium-chain-triglycerides-mct-oil-cctg
+    Redirect 301 /industrial-lubricants/medium-chain-triglycerides-mct-oil--cctg https://henichemicals.com/industrial-lubricants/medium-chain-triglycerides-mct-oil-cctg
+    Redirect 301 /industrial-lubricants/neopentylglycol-dicocoate https://henichemicals.com/industrial-lubricants/neopentyl-glycol-dicocoate
+    Redirect 301 /medium-chain-triglycerides-mct-oil-gtcc-cctg https://henichemicals.com/medium-chain-triglycerides-mct-oil-cctg
+    Redirect 301 /cosmeceutical/palmitoylethanolamide-pea https://henichemicals.com/cosmeceuticals/palmitoylethanolamide-pea
+    Redirect 301 /cosmetics/isotridecyl-stearate-itd https://henichemicals.com/cosmetics/isotridecyl-stearate-itds
+    Redirect 301 /cosmetic-chemicals/2-ethylhexyl-palmitate https://henichemicals.com/cosmetics/2-ethylhexyl-palmitate
+    Redirect 301 /products-by-applications/cosmetic-chemicals https://henichemicals.com/products-by-applications/cosmetics
+
+    Redirect 301 /product-details/ammoniated-mercury-1 https://henichemicals.com/specialty-and-fine-chemicals/ammoniated-mercury
+    Redirect 301 /product-details/bismuth-citrate-1 https://henichemicals.com/pharmaceutical-chemicals/bismuth-citrate
+    Redirect 301 /product-details/bismuth-nitrate-pentahydrate-1 https://henichemicals.com/specialty-and-fine-chemicals/bismuth-nitrate-pentahydrate
+    Redirect 301 /product-details/bismuth-oxide-1 https://henichemicals.com/industrial-chemicals/bismuth-oxide
+    Redirect 301 /product-details/bismuth-oxychloride-1 https://henichemicals.com/cosmetic-chemicals/bismuth-oxychloride
+    Redirect 301 /product-details/bismuth-subgallate-1 https://henichemicals.com/pharmaceutical-chemicals/bismuth-subgallate
+    Redirect 301 /product-details/bismuth-subnitrate-1 https://henichemicals.com/pharmaceutical-chemicals/bismuth-subnitrate
+    Redirect 301 /product-details/bismuth-subsalicylate-1 https://henichemicals.com/pharmaceutical-chemicals/bismuth-subsalicylate
+    Redirect 301 /product-details/ethyl-oleate https://henichemicals.com/industrial-lubricants/ethyl-oleate
+    Redirect 301 /product-details/ethyl-oleate-1-1-1-1 https://henichemicals.com/cosmetic-chemicals/ethyl-oleate
+    Redirect 301 /product-details/ethyl-oleate-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1 https://henichemicals.com/pharmaceutical-chemicals/ethyl-oleate
+    Redirect 301 /product-details/glycerol-trioleate-gto-1 https://henichemicals.com/industrial-lubricants/glycerol-trioleate-gto
+    Redirect 301 /product-details/iodic-acid-1 https://henichemicals.com/specialty-and-fine-chemicals/iodic-acid
+    Redirect 301 /product-details/iodine-pentoxide-1 https://henichemicals.com/specialty-and-fine-chemicals/iodine-pentoxide
+    Redirect 301 /product-details/isotridecyl-stearate-itds-1 https://henichemicals.com/cosmetic-chemicals/isotridecyl-stearate-itds
+    Redirect 301 /product-details/isotridecyl-stearate-itds-1-1-1 https://henichemicals.com/industrial-lubricants/isotridecyl-stearate-itds
+    Redirect 301 /product-details/medium-chain-triglycerides-mct-oil--cctg https://henichemicals.com/pharmaceutical-chemicals/medium-chain-triglycerides-mct-oil-cctg
+    Redirect 301 /product-details/medium-chain-triglycerides-mct-oil--cctg-1 https://henichemicals.com/industrial-lubricants/medium-chain-triglycerides-mct-oil-cctg
+    Redirect 301 /product-details/medium-chain-triglycerides-mct-oil--cctg-2 https://henichemicals.com/food-nutraceutical-chemicals/medium-chain-triglycerides-mct-oil-cctg
+    Redirect 301 /product-details/medium-chain-triglycerides-mct-oil--gtcc--cctg-1-1-1-1-1-1 https://henichemicals.com/cosmetic-chemicals/medium-chain-triglycerides-mct-oil-cctg
+    Redirect 301 /product-details/mercuric-acetate-1 https://henichemicals.com/specialty-and-fine-chemicals/mercuric-acetate
+    Redirect 301 /product-details/mercuric-bromide-1 https://henichemicals.com/specialty-and-fine-chemicals/mercuric-bromide
+    Redirect 301 /product-details/mercuric-chloride-1 https://henichemicals.com/specialty-and-fine-chemicals/mercuric-chloride
+    Redirect 301 /product-details/mercuric-iodide-red-1 https://henichemicals.com/specialty-and-fine-chemicals/mercuric-iodide-red
+    Redirect 301 /product-details/mercuric-nitrate-monohydrate-1 https://henichemicals.com/specialty-and-fine-chemicals/mercuric-nitrate-monohydrate
+    Redirect 301 /product-details/mercuric-oxide-red-1 https://henichemicals.com/specialty-and-fine-chemicals/mercuric-oxide-red
+    Redirect 301 /product-details/mercuric-oxide-yellow-1 https://henichemicals.com/specialty-and-fine-chemicals/mercuric-oxide-yellow
+    Redirect 301 /product-details/mercuric-sulfate-1 https://henichemicals.com/specialty-and-fine-chemicals/mercuric-sulfate
+    Redirect 301 /product-details/mercuric-thiocynate-1 https://henichemicals.com/specialty-and-fine-chemicals/mercuric-thiocynate
+    Redirect 301 /product-details/mercurous-chloride-1 https://henichemicals.com/specialty-and-fine-chemicals/mercurous-chloride
+    Redirect 301 /product-details/mercurous-iodide https://henichemicals.com/specialty-and-fine-chemicals/mercurous-iodide
+    Redirect 301 /product-details/mercurous-nitrate-dihydrate-1 https://henichemicals.com/specialty-and-fine-chemicals/mercurous-nitrate-dihydrate
+    Redirect 301 /product-details/neopentylglycol-dicocoate-1 https://henichemicals.com/industrial-lubricants/neopentylglycol-dicocoate
+    Redirect 301 /product-details/neopentylglycol-dioleate-1-1 https://henichemicals.com/industrial-lubricants/neopentylglycol-dioleate
+    Redirect 301 /product-details/octyl-salicylate-1-1 https://henichemicals.com/cosmetic-chemicals/octyl-salicylate
+    Redirect 301 /product-details/octyl-salicylate-1-1-1 https://henichemicals.com/pharmaceutical-chemicals/octyl-salicylate
+    Redirect 301 /product-details/p3-bisphenol-n-phenyl-phenolphthalein-pppbp-1-1-1 https://henichemicals.com/specialty-and-fine-chemicals/p3-bisphenol-n-phenyl-phenolphthalein-pppbp
+    Redirect 301 /product-details/palmitoylethanolamide-pea https://henichemicals.com/cosmeceutical-chemicals/palmitoylethanolamide-pea
+    Redirect 301 /product-details/palmitoylethanolamide-pea-1-1 https://henichemicals.com/food-nutraceutical-chemicals/palmitoylethanolamide-pea
+    Redirect 301 /product-details/peto---68-pentaerythritol-tetraoleate-1-1 https://henichemicals.com/industrial-lubricants/peto-68-pentaerythritol-tetraoleate
+    Redirect 301 /product-details/peto---90-pentaerythritol-tetraoleate-1 https://henichemicals.com/industrial-lubricants/peto-90-pentaerythritol-tetraoleate
+    Redirect 301 /product-details/phenolphthalein-c https://henichemicals.com/industrial-chemicals/phenolphthalein-c
+    Redirect 301 /product-details/phenolphthalein-white https://henichemicals.com/industrial-chemicals/phenolphthalein-white
+    Redirect 301 /product-details/phenolphthalein-white-2-1-1-1 https://henichemicals.com/pharmaceutical-chemicals/phenolphthalein-white
+    Redirect 301 /product-details/phenolphthalein-yellowish-white-1-1-1-1 https://henichemicals.com/pharmaceutical-chemicals/phenolphthalein-yellowish-white
+    Redirect 301 /product-details/phenyl-mercuric-acetate https://henichemicals.com/pharmaceutical-chemicals/phenyl-mercuric-acetate
+    Redirect 301 /product-details/phenyl-mercuric-nitrate https://henichemicals.com/pharmaceutical-chemicals/phenyl-mercuric-nitrate
+    Redirect 301 /product-details/phenyl-mercuric-oleate-1 https://henichemicals.com/specialty-and-fine-chemicals/phenyl-mercuric-oleate
+    Redirect 301 /product-details/thymolphthalein-1 https://henichemicals.com/industrial-chemicals/thymolphthalein
+    Redirect 301 /product-details/tmpto-38-trimethylolpropane-trioleate-1 https://henichemicals.com/industrial-lubricants/tmpto-38-trimethylolpropane-trioleate
+    Redirect 301 /product-details/tmpto-46-trimethylolpropane-trioleate-1-1-1 https://henichemicals.com/industrial-lubricants/tmpto-46-trimethylolpropane-trioleate
+    Redirect 301 /product-details/tmpto-68-ls-trimethylolpropane-trioleate-1-1-1-1-1 https://henichemicals.com/industrial-lubricants/tmpto-68-ls-trimethylolpropane-trioleate
+    Redirect 301 /product-details/tmpto-68-trimethylolpropane-trioleate https://henichemicals.com/industrial-lubricants/tmpto-68-trimethylolpropane-trioleate
+    Redirect 301 /product-details/tri---isotridecyl-trimellitate-tittm-1-1 https://henichemicals.com/industrial-lubricants/tri-isotridecyl-trimellitate-tittm
+    Redirect 301 /product-details/triethyl-citrate-1-1-1 https://henichemicals.com/cosmetic-chemicals/triethyl-citrate
+    Redirect 301 /product-details/triethyl-citrate-2-1 https://henichemicals.com/pharmaceutical-chemicals/triethyl-citrate
+    Redirect 301 /product-details/trimethylolpropane-complex-ester-tmp-complex-ester-1-1-1 https://henichemicals.com/industrial-lubricants/trimethylolpropane-complex-ester-tmp-complex-ester
+    Redirect 301 /product-details/trimethylolpropane-tricaprylatecaprate-tmptcc-1 https://henichemicals.com/industrial-lubricants/trimethylolpropane-tricaprylatecaprate-tmptcc
+    Redirect 301 /product-details/yellow-phenolphtalein-1-1 https://henichemicals.com/pharmaceutical-chemicals/yellow-phenolphtalein
+    Redirect 301 /products-by-applications/food--nutraceuticals https://henichemicals.com/products-by-applications/food-nutraceutical-chemicals
+    Redirect 301 /products-by-applications/food-nutraceuticals https://henichemicals.com/products-by-applications/food-nutraceutical-chemicals
+    Redirect 301 /products-by-applications/food-nutraceutical-chemicals https://henichemicals.com/products-by-applications/food-nutraceuticals-chemicals
+   Redirect 301 /cdn-cgi/l/email-protection https://henichemicals.com/contact
+
+       
+
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+
+# FileETag None is not enough for every server.
+<IfModule mod_headers.c>
+Header unset ETag
+</IfModule>
+
+# Since we’re sending far-future expires, we don’t need ETags for static content.
+# developer.yahoo.com/performance/rules.html#etags
+FileETag None
+
+
+<IfModule mod_mime.c>
+	AddType image/avif                                  avif
+    AddType image/avif-sequence                         avifs
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+ # Images
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # Video
+  ExpiresByType video/webm "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType video/mpeg "access plus 1 year"
+
+  # Fonts
+  ExpiresByType application/ttf "access plus 1 year"
+  ExpiresByType application/otf "access plus 1 year"
+  ExpiresByType application/woff "access plus 1 year"
+  ExpiresByType application/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+
+  # CSS, JavaScript
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+
+  # Others
+  ExpiresByType application/pdf "access plus 1 year"
+  ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
+</IfModule>
+# Expires headers (for better cache control)
+<IfModule mod_expires.c>
+	ExpiresActive on
+	ExpiresDefault                              "access plus 4 months"
+	# cache.appcache needs re-requests in FF 3.6 (thanks Remy ~Introducing HTML5)
+	ExpiresByType text/cache-manifest           "access plus 4 months"
+	# Your document html
+	ExpiresByType text/html                     "access plus 4 months"
+	# Data
+	ExpiresByType text/xml                      "access plus 4 months"
+	ExpiresByType application/xml               "access plus 4 months"
+	ExpiresByType application/json              "access plus 4 months"
+	# Feed
+	ExpiresByType application/rss+xml           "access plus 1 hour"
+	ExpiresByType application/atom+xml          "access plus 1 hour"
+	# Favicon (cannot be renamed)
+	ExpiresByType image/x-icon                  "access plus 1 week"
+	# Media: images, video, audio
+	ExpiresByType image/gif                     "access plus 4 months"
+	ExpiresByType image/png                     "access plus 4 months"
+	ExpiresByType image/jpeg                    "access plus 4 months"
+	ExpiresByType image/webp                    "access plus 4 months"
+	ExpiresByType video/ogg                     "access plus 4 months"
+	ExpiresByType audio/ogg                     "access plus 4 months"
+	ExpiresByType video/mp4                     "access plus 4 months"
+	ExpiresByType video/webm                    "access plus 4 months"
+	ExpiresByType image/avif                    "access plus 4 months"
+	ExpiresByType image/avif-sequence           "access plus 4 months"
+	# HTC files  (css3pie)
+	ExpiresByType text/x-component              "access plus 1 month"
+	# Webfonts
+	ExpiresByType font/ttf                      "access plus 4 months"
+	ExpiresByType font/otf                      "access plus 4 months"
+	ExpiresByType font/woff                     "access plus 4 months"
+	ExpiresByType font/woff2                    "access plus 4 months"
+	ExpiresByType image/svg+xml                 "access plus 4 months"
+	ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+	# CSS and JavaScript
+	ExpiresByType text/css                      "access plus 1 year"
+	ExpiresByType application/javascript        "access plus 1 year"
+</IfModule>
+# Gzip compression
+<IfModule mod_deflate.c>
+# Active compression
+SetOutputFilter DEFLATE
+# Force deflate for mangled headers
+<IfModule mod_setenvif.c>
+<IfModule mod_headers.c>
+SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+# Don’t compress images and other uncompressible content
+SetEnvIfNoCase Request_URI \
+\.(?:gif|jpe?g|png|rar|zip|exe|flv|mov|wma|mp3|avi|swf|mp?g|mp4|webm|webp|pdf)$ no-gzip dont-vary
+</IfModule>
+</IfModule>
+
+# Compress all output labeled with one of the following MIME-types
+<IfModule mod_filter.c>
+AddOutputFilterByType DEFLATE application/atom+xml \
+		                          application/javascript \
+		                          application/json \
+		                          application/rss+xml \
+		                          application/vnd.ms-fontobject \
+		                          application/x-font-ttf \
+		                          application/xhtml+xml \
+		                          application/xml \
+		                          font/opentype \
+		                          image/svg+xml \
+		                          image/x-icon \
+		                          text/css \
+		                          text/html \
+		                          text/plain \
+		                          text/x-component \
+		                          text/xml
+</IfModule>
+
+</IfModule>
+
+# END WP Rocket
+
+
+# TN - BEGIN Cache-Control Headers
+<ifModule mod_headers.c>
+<filesMatch "\.(ico|jpe?g|png|gif|swf)$">
+Header set Cache-Control "public"
+</filesMatch>
+<filesMatch "\.(css)$">
+Header set Cache-Control "public"
+</filesMatch>
+<filesMatch "\.(js)$">
+Header set Cache-Control "private"
+</filesMatch>
+<filesMatch "\.(x?html?|php)$">
+Header set Cache-Control "private, must-revalidate"
+</filesMatch>
+</ifModule>
+# TN - END Cache-Control Headers
+
+# <IfModule pagespeed_module>
+# ModPagespeed on
+# ModPagespeedEnableFilters rewrite_css,combine_css
+# ModPagespeedEnableFilters recompress_images
+# ModPagespeedEnableFilters convert_png_to_jpeg,convert_jpeg_to_webp
+# ModPagespeedEnableFilters collapse_whitespace,remove_comments
+# </IfModule>
+
+
+Options All -Indexes
+ServerSignature Off
+
+# BEGIN GZIP COMPRESSION
+<IfModule mod_gzip.c>
+mod_gzip_on Yes
+mod_gzip_dechunk Yes
+mod_gzip_item_include file \.(html?|txt|css|js|php|pl)$
+mod_gzip_item_include handler ^cgi-script$
+mod_gzip_item_include mime ^text/.*
+mod_gzip_item_include mime ^application/x-javascript.*
+mod_gzip_item_exclude mime ^image/.*
+mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</IfModule>
+# END GZIP COMPRESSION
+
+
+
+# X-XSS-Protection
+<ifModule mod_headers.c>
+        Header set Strict-Transport-Security "max-age=31536000" env=HTTPS
+        
+        Header setifempty Referrer-Policy: same-origin
+        Header set X-XSS-Protection "1; mode=block"
+        Header set X-Permitted-Cross-Domain-Policies "none"
+        Header set Referrer-Policy "no-referrer"
+        Header set X-Content-Type-Options: nosniff
+</ifModule>
+
+
+#for pagespeed
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css)$">
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+</IfModule>
+
+
+
+#gzip code
+<IfModule mod_deflate.c>
+
+  # Compress HTML, CSS, JavaScript, Text, XML and fonts
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/atom+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/woff
+  AddOutputFilterByType DEFLATE font/woff2
+
+  # Remove buggy browser support
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+
+</IfModule>
+
+# Enable caching for static resources
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+
+    # Fonts
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+
+    # HTML (optional, short caching)
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>

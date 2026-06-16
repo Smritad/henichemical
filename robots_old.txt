@@ -1,0 +1,24 @@
+User-agent: *
+
+Disallow: /admin/
+Disallow: /private/
+Disallow: /vendor/
+Disallow: /node_modules/
+Disallow: /bower_components/
+Disallow: /.git/
+Disallow: /phpunit.xml
+Disallow: /.htaccess
+Disallow: /.env
+Disallow: /sqtbrvfe/
+Disallow: /d4hpz/
+Disallow: /8vv4sg/
+Disallow: /qawzxc/
+
+Allow: /public/
+Allow: /blogs/
+Allow: /api/
+Allow: /*.css
+Allow: /*.js
+ 
+Sitemap: https://henichemicals.com/sitemap.xml
+ 
