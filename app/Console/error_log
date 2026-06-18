@@ -1,0 +1,4 @@
+[26-May-2026 06:54:35 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Console\Kernel" not found in /home/henichemicals/public_html/app/Console/Kernel.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/henichemicals/public_html/app/Console/Kernel.php on line 8

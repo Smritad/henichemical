@@ -1643,6 +1643,17 @@ header {
     margin-top: 72px
 }
 
+/* Prevent layout shift (CLS). Owl's base CSS sets `.owl-carousel{display:none}`
+   until JS adds `.owl-loaded`, so every carousel pops in from zero height and
+   shoves the page down. Instead, reveal the first slide immediately and hide
+   the rest, reserving the space before owl initialises. */
+.owl-carousel:not(.owl-loaded) {
+    display: block;
+}
+.owl-carousel:not(.owl-loaded) > *:not(:first-child) {
+    display: none;
+}
+
 .banner-carousel .slide-item {
     position: relative;
     padding: 185px 0

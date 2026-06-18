@@ -146,6 +146,23 @@ FileETag None
     AddType image/avif-sequence                         avifs
 </IfModule>
 
+# ===== Text compression (major PageSpeed win) =====
+# Brotli first (best ratio), gzip as fallback.
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/xml
+    AddOutputFilterByType BROTLI_COMPRESS text/javascript application/javascript application/x-javascript
+    AddOutputFilterByType BROTLI_COMPRESS application/json application/xml application/rss+xml
+    AddOutputFilterByType BROTLI_COMPRESS image/svg+xml application/vnd.ms-fontobject application/x-font-ttf font/opentype
+</IfModule>
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+    AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json application/xml application/rss+xml
+    AddOutputFilterByType DEFLATE image/svg+xml application/vnd.ms-fontobject application/x-font-ttf font/opentype
+    # Don't compress already-compressed binaries
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|avif|ico|mp4|webm|woff2?)$ no-gzip dont-vary
+</IfModule>
+
 <IfModule mod_expires.c>
   ExpiresActive On
 

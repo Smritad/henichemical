@@ -23,7 +23,7 @@
                 <!--</div>-->
                 
                 <div class="image-layer" >
-                    <img src="{{ asset('public/assets/images/banners/'.$list_banners_ind->img_src) }}"/  fetchpriority="high">
+                    <img src="{{ asset('public/assets/images/banners/'.$list_banners_ind->img_src) }}" width="1920" height="800" alt="{{ $list_banners_ind->title_one ?? 'HENI Chemicals' }}" {{ $index === 0 ? 'fetchpriority=high' : 'loading=lazy' }}>
                 </div>
 
                 <div class="container">

@@ -47,12 +47,20 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('public/frontend/img/logo/fav.webp') }}">
 
+    <!-- ===== Resource hints: warm up third-party connections early ===== -->
+    <link rel="preconnect" href="https://maxcdn.bootstrapcdn.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://snap.licdn.com">
+
     <!-- ===== Stylesheets ===== -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.css">
 
     <link rel="stylesheet" href="{{ asset('public/frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('public/frontend/css/media.css') }}">
@@ -64,7 +72,7 @@
     <link rel="stylesheet" href="{{ asset('public/frontend/css/owl.theme.default.min.css') }}">
 
     <!-- AOS + reCAPTCHA (safe to defer) -->
-    <script data-cfasync="false" defer src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script data-cfasync="false" defer src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script data-cfasync="false" async defer src="https://www.google.com/recaptcha/api.js"></script>
     <script type="text/javascript">
 _linkedin_partner_id = "10299281";
@@ -405,9 +413,6 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     <script src="{{ asset('public/frontend/js/jquery.easeScroll.js') }}"></script>
     <script src="{{ asset('public/frontend/js/custom.js') }}"></script>
 
-    <!-- CKEditor 5 (loaded only where needed — harmless on other pages) -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
-
     <!-- Rellax init (guarded) -->
     <script>
         if (document.querySelector('.rellax')) {
@@ -485,37 +490,6 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         $(document).on('click', '.product-link', function (event) {
             event.preventDefault();
             window.location.href = $(this).data('url');
-        });
-    });
-    </script>
-
-    <!-- CKEditor init (consolidated, safe on pages without editors) -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        if (typeof ClassicEditor === 'undefined') return;
-
-        var editors = {};
-        var selectors = ['#editor', '#editor8'];
-
-        selectors.forEach(function (selector) {
-            var el = document.querySelector(selector);
-            if (!el) return;
-
-            ClassicEditor.create(el)
-                .then(function (newEditor) { editors[selector] = newEditor; })
-                .catch(function (err) { console.error('CKEditor error:', err); });
-        });
-
-        // Sync editor content back to each textarea on form submit
-        document.querySelectorAll('form').forEach(function (form) {
-            form.addEventListener('submit', function () {
-                selectors.forEach(function (selector) {
-                    var el = document.querySelector(selector);
-                    if (el && editors[selector]) {
-                        el.value = editors[selector].getData();
-                    }
-                });
-            });
         });
     });
     </script>

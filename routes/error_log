@@ -1,0 +1,12 @@
+[26-May-2026 06:52:00 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/henichemicals/public_html/routes/web.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/henichemicals/public_html/routes/web.php on line 7
+[26-May-2026 06:52:00 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Route" not found in /home/henichemicals/public_html/routes/api.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/henichemicals/public_html/routes/api.php on line 17
+[26-May-2026 06:54:34 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\Facades\Broadcast" not found in /home/henichemicals/public_html/routes/channels.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/henichemicals/public_html/routes/channels.php on line 16
