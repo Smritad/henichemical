@@ -11,9 +11,11 @@
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 
-  # 2) Redirect HTTP to HTTPS (for non-www host)
+  # 2) Redirect HTTP to HTTPS (for non-www host) — skipped on local dev hosts
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteCond %{HTTP_HOST} !^localhost [NC]
+  RewriteCond %{HTTP_HOST} !^127\.0\.0\.1 [NC]
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 

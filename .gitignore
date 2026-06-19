@@ -14,3 +14,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# Accidentally-committed archive (785 MB) — never track the root .zip
+/.zip

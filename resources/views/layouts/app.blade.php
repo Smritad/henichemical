@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ===== Google Tag Manager (MUST load early, bypass Rocket Loader) ===== -->
-    <script data-cfasync="false">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-K7VTQ42X');</script>
-    <!-- ===== End Google Tag Manager ===== -->
-
-    <!-- Google tag (gtag.js) — shared init for Google Ads + GA4 -->
-    <script data-cfasync="false" async src="https://www.googletagmanager.com/gtag/js?id=AW-17846379241"></script>
+    <!-- ===== Analytics & marketing tags — deferred until first interaction (or 5s) =====
+         Keeps ~1.2 MB of third-party JS off the critical path so it no longer blocks
+         load. The dataLayer/gtag stubs run immediately, so queued events/config are
+         preserved and fire as soon as the libraries load. -->
     <script data-cfasync="false">
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'AW-17846379241'); // Google Ads
         gtag('config', 'G-0L4BGSNB3C');   // GA4
+        window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+        window._linkedin_data_partner_ids.push("10299281");
+
+        (function () {
+            var fired = false;
+            function inject(src){ var s = document.createElement('script'); s.async = true; s.src = src; document.head.appendChild(s); }
+            function loadTags(){
+                if (fired) return; fired = true;
+                // Google Tag Manager container
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+                var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+                j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-K7VTQ42X');
+                // Google tag (Google Ads + GA4 share one gtag.js library)
+                inject('https://www.googletagmanager.com/gtag/js?id=AW-17846379241');
+                // LinkedIn Insight
+                inject('https://snap.licdn.com/li.lms-analytics/insight.min.js');
+            }
+            ['scroll','mousemove','touchstart','keydown','click'].forEach(function(e){
+                window.addEventListener(e, loadTags, {passive:true, once:true});
+            });
+            setTimeout(loadTags, 5000); // fallback so analytics still fire on quick bounces
+        })();
     </script>
-    <!-- GA4 library (config handled above) -->
-    <script data-cfasync="false" async src="https://www.googletagmanager.com/gtag/js?id=G-0L4BGSNB3C"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,7 +63,6 @@
     <link rel="shortcut icon" href="{{ asset('public/frontend/img/logo/fav.webp') }}">
 
     <!-- ===== Resource hints: warm up third-party connections early ===== -->
-    <link rel="preconnect" href="https://maxcdn.bootstrapcdn.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://www.googletagmanager.com">
@@ -56,38 +70,47 @@
     <link rel="dns-prefetch" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://snap.licdn.com">
 
-    <!-- ===== Stylesheets ===== -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-
+    <!-- ===== Critical stylesheets (render-blocking, needed above the fold) =====
+         Bootstrap & Font Awesome are self-hosted so they load same-origin, gzipped
+         and cached (the external CDN versions blocked render for ~1.9s on mobile). -->
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('public/frontend/css/media.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/frontend/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/frontend/css/effect.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/frontend/css/hover.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/frontend/css/application-slider.css') }}">
     <link rel="stylesheet" href="{{ asset('public/frontend/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('public/frontend/css/owl.theme.default.min.css') }}">
 
-    <!-- AOS + reCAPTCHA (safe to defer) -->
+    <!-- ===== Non-critical stylesheets (loaded async so they don't block first paint) ===== -->
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/font-awesome.min.css') }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/animate.css') }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/effect.css') }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/hover.css') }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('public/frontend/css/application-slider.css') }}" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="{{ asset('public/frontend/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+        <link rel="stylesheet" href="{{ asset('public/frontend/css/animate.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/frontend/css/effect.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/frontend/css/hover.css') }}">
+        <link rel="stylesheet" href="{{ asset('public/frontend/css/application-slider.css') }}">
+    </noscript>
+
+    <!-- AOS (defer) -->
     <script data-cfasync="false" defer src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script data-cfasync="false" async defer src="https://www.google.com/recaptcha/api.js"></script>
-    <script type="text/javascript">
-_linkedin_partner_id = "10299281";
-window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-</script><script type="text/javascript">
-(function(l) {
-if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-window.lintrk.q=[]}
-var s = document.getElementsByTagName("script")[0];
-var b = document.createElement("script");
-b.type = "text/javascript";b.async = true;
-b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-s.parentNode.insertBefore(b, s);})(window.lintrk);
-</script>
+
+    <!-- reCAPTCHA: only loaded on pages that actually render a .g-recaptcha widget
+         (homepage and most pages skip its ~376 KB entirely). -->
+    <script data-cfasync="false">
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!document.querySelector('.g-recaptcha')) return;
+            var s = document.createElement('script');
+            s.src = 'https://www.google.com/recaptcha/api.js';
+            s.async = true; s.defer = true;
+            document.head.appendChild(s);
+        });
+    </script>
 <noscript>
 <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=10299281&fmt=gif" />
 </noscript>
@@ -403,7 +426,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 
     <!-- ===== jQuery FIRST (required by plugins below) ===== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="{{ asset('public/frontend/js/bootstrap.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper-animation@1/build/SwiperAnimation.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>

@@ -1,16 +1,19 @@
 @font-face {
 	font-family: 'productsans-regular';
 	src: url('../fonts/google-sans/productsans-regular.ttf');
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'productsans-bold';
 	src: url('../fonts/google-sans/productsans-bold.ttf');
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'productsans-medium';
 	src: url('../fonts/google-sans/productsans-medium.ttf');
+	font-display: swap;
 }
 /*@font-face {*/
 /*    font-family: 'icons';*/
