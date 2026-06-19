@@ -42,6 +42,9 @@
     <!-- Google Search Console -->
     <meta name="google-site-verification" content="sQ7uvRmgeL7PoNJPLrCqF9vqYeDmtO-HOcyyjWf5_5Y">
 
+    <!-- Ahrefs site verification -->
+    <meta name="ahrefs-site-verification" content="daabf33f30dcd7c9715b00a7ed37a965b56652f90e9981ef1c06de66657d4c08">
+
     <!-- SEO -->
     <title>@yield('meta_title', 'HENI Chemicals | Global Supplier of Specialty & Industrial Chemicals')</title>
     <meta name="description" content="@yield('meta_description', 'Manufacturer & exporter of APIs, esters, excipients, and specialty chemicals. Serving USA, UK, Europe, Middle East & Asia.')">
